@@ -1,0 +1,13 @@
+cmake_minimum_required(VERSION 3.5)
+project(sdd)
+set(CMAKE_C_STANDARD 99)
+include_directories(include)
+string(TIMESTAMP sdd_date)
+set(sdd_version "2.0")
+file(GLOB_RECURSE SDD_SRC_FILES "*.h" "*.c")
+set(CMAKE_C_FLAGS "-Wall -DFULL_DEBUG=1 -DSDD_VERSION=\\\"${sdd_version}\\\" -DSDD_DATE=\\\"${sdd_date}\\\"")
+set(CMAKE_C_FLAGS_RELEASE "-O2 -DNDEBUG")
+set(CMAKE_C_FLAGS_DEBUG  " -O0 -g")
+add_library(sdd ${SDD_SRC_FILES})
+target_link_libraries(sdd m)
+
